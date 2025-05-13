@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\mehme\source\repos\C# repos\RatingSystem\RatingAPI\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-05-24T14:36:09.8071028Z;True|2024-05-24T16:27:55.3550432+03:00;True|2024-05-24T13:59:32.5534042+03:00;True|2024-05-17T19:48:38.3621320+03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
