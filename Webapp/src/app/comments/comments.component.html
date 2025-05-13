@@ -1,0 +1,579 @@
+
+<!-- <div>
+  <button (click)='toggleShowRTG()' class="fixed-button-rtg">RTG</button>
+
+</div>
+
+<div>
+  <button (click)='toggleShowShare()' class="fixed-button-share" >SHARE</button>
+</div> -->
+
+<!-- <div>
+  <button (click)='toggleShowAverage()' class="fixed-button-avg" (click)="monthClicked()" >ORTALAMA</button>
+</div>
+ -->
+
+
+<!-- <div>
+  <button (click)='logout()' class="fixed-button-logout" >Log Out</button>
+</div> -->
+
+<!-- <div>
+  <button *ngIf="usernameCheck" (click)="goToUser()" class="fixed-button-user">User Settings</button>
+</div> -->
+
+
+
+<!-- <div class="dropdown2">
+  <button class="dropbtn2" (click)="togglePanel()">
+    <img src="assets/settings.png" alt="Menu">
+  </button>
+  <div *ngIf="panelOpen" class="dropdown2-content" [ngClass]="{'show': panelOpen}">
+    <a class="logout-btn" (click)="logout()">Logout</a>
+    <a class="settings-btn" (click)="goToUser()">User Settings</a>
+  </div>
+</div> -->
+
+<div class="dropdown2">
+  <button class="dropbtn2" (click)="togglePanel()">
+    <img src="assets/settings.png" alt="Menu">
+  </button>
+  <div class="dropdown2-content" [ngClass]="{'show': panelOpen}">
+    <div class="panel">
+      <a class="menu-panel-button" (click)="logout()">Çıkış Yap</a>
+      <div *ngIf="usernameCheck" class="line"></div>
+      <a *ngIf="usernameCheck" class="menu-panel-button" (click)="goToUser()">User Settings</a>
+      <div *ngIf="usernameCheck" class="line"></div>
+      <a  *ngIf="usernameCheck" class="menu-panel-button" (click)="goToProgramSettings()">Program Settings</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown3">
+  <button class="dropbtn3" (click)="togglePanel2()">
+    <img src="assets/menuicon.jpg" alt="Menu">
+  </button>
+  <div class="dropdown3-content" [ngClass]="{'show': panelOpen2}">
+    <div class="panel">
+      <input type="text" placeholder="İstediğiniz verinin tarihi" class="text-input" [(ngModel)]="dateGiven">
+      <a class="menu-panel-button" (click)="getir()">Veriyi Getir</a>
+      <div class="line"></div>
+      <a class="menu-panel-button" (click)="toggleShowRTG()">RTG</a>
+      <a class="menu-panel-button" (click)="toggleShowShare()">SHARE</a>
+      <a class="menu-panel-button" (click)="toggleShowAverage()">ORTALAMA</a>
+      <div class="line"></div>
+      <a class="menu-panel-button" (click)="download()">Download</a>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 
+
+<div class="panel-container" *ngIf="panelOpen2">
+  <div class="panel">
+    <button (click)="togglePanel2()" class="close-button">Close</button>
+    <button class="panel-button">Button 1</button>
+    <button class="panel-button">Button 2</button>
+    <button class="panel-button">Button 3</button>
+    <button class="panel-button">Button 4</button>
+    <input type="text" placeholder="Type here..." class="text-input">
+  </div>
+</div>
+
+<button (click)="togglePanel2()" class="open-button">Open Panel</button>
+ -->
+
+
+<!-- <div>
+  <button (click)='toggleShowWj()' class="fixed-button-wj" >wj</button>
+</div> -->
+
+<!-- <a style="cursor: pointer" (click)="download()">
+  <button class="fixed-button-download"> Download</button>
+</a> -->
+
+
+
+
+  <div class="container" *ngIf='showRTG'>
+    <h2><span style="color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{receivedlist.propertyName1[1].tableDate| date:'dd-MM-yyyy'}} {{getDayName(receivedlist.propertyName2[1].tableDate)}}</span></h2>
+        <table id="excel-table">
+            <thead>
+
+              <!-- <tr>
+                <th style="background-color:rgb(166, 166, 166);" colspan="27">RTG {{receivedlist.propertyName1[1].tableDate| date:'dd-MM-yyyy'}}</th>
+
+              </tr> -->
+              <tr>
+                <th style="background-color:rgb(166, 166, 166);" colspan="4"> </th>
+                <th style="background-color:rgb(166, 166, 166);" colspan="11">Rtg Total Individuals</th>
+                <th style="background-color:rgb(166, 166, 166);" colspan="1"> </th>
+                <th style="background-color:rgb(166, 166, 166);" colspan="11">Rtg AB SES</th>
+
+              </tr>
+
+              <tr>
+                <th style="background-color:rgb(166, 166, 166);  width: 10px;">Zaman Dilimi</th>
+                <th style="background-color:rgb(230, 184, 183);  width: 10px;">NTV</th>
+                <th style="background-color:rgb(255, 255, 102);  width: 10px;">HABERTURK</th>
+                <th style="background-color:rgb(196, 215, 155);  width: 10px;">CNNTURK</th>
+                <th *ngIf="NTV" style="background-color:rgb(230, 184, 183);">NTV</th>
+                <th *ngIf="HABERTURK" style="background-color:rgb(255, 255, 102);">HABERTURK</th>
+                <th *ngIf="CNNTURK" style="background-color:rgb(196, 215, 155);">CNNTURK</th>
+                <th *ngIf="HALKTV" style="background-color:rgb(246, 0, 0);">HALK TV</th>
+                <th *ngIf="KRT" style="background-color:rgb(255, 255, 255);">KRT</th>
+                <th *ngIf="AHABER" style="background-color:rgb(141, 180, 226);">AHABER</th>
+                <th *ngIf="TRTHABER" style="background-color:rgb(250, 191, 143);">TRT HABER</th>
+                <th *ngIf="TELE1" style="background-color:rgb(218, 147, 223);">TELE1</th>
+                <th *ngIf="TV100" style="background-color:rgb(166, 166, 166);">TV100</th>
+                <th *ngIf="HABERGLOBAL" style="background-color:rgb(0, 176, 240);">HABER GLOBAL</th>
+                <th *ngIf="SOZCUTV" style="background-color:rgb(192, 80, 77);">SOZCU TV</th>
+                <th  style="background-color:rgb(166, 166, 166);  width: 10px;">Zaman Dilimi</th>
+                <th *ngIf="NTV" style="background-color:rgb(230, 184, 183);">NTV</th>
+                <th *ngIf="HABERTURK" style="background-color:rgb(255, 255, 102);">HABERTURK</th>
+                <th *ngIf="CNNTURK" style="background-color:rgb(196, 215, 155);">CNNTURK</th>
+                <th *ngIf="HALKTV" style="background-color:rgb(246, 0, 0);">HALK TV</th>
+                <th *ngIf="KRT" style="background-color:rgb(255, 255, 255);">KRT</th>
+                <th *ngIf="AHABER" style="background-color:rgb(141, 180, 226);">AHABER</th>
+                <th *ngIf="TRTHABER" style="background-color:rgb(250, 191, 143);">TRT HABER</th>
+                <th *ngIf="TELE1" style="background-color:rgb(218, 147, 223);">TELE1</th>   
+                <th *ngIf="TV100" style="background-color:rgb(166, 166, 166);">TV100</th>
+                <th *ngIf="HABERGLOBAL" style="background-color:rgb(0, 176, 240);">HABER GLOBAL</th>
+                <th *ngIf="SOZCUTV" style="background-color:rgb(192, 80, 77);">SOZCU TV</th>
+              </tr>
+              
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of receivedlist.propertyName1; let i = index" >
+                <tr >  
+                  <ng-container *ngIf="i !== receivedlist.propertyName1.length - 1; else lastRow">
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td style="background-color:rgb(230, 184, 183);">{{ item.programNTV}}</td>
+                    <td style="background-color:rgb(255, 255, 102);">{{ item.programHABERTURK}}</td>
+                    <td style="background-color:rgb(196, 215, 155);">{{ item.programCNNTURK}}</td>
+                    <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV| number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK | number: '1.2-2' }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         | number: '1.2-2' }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL | number: '1.2-2' }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     | number: '1.2-2' }}</label></td>
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv| number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  | number: '1.2-2' }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         | number: '1.2-2' }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal | number: '1.2-2' }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     | number: '1.2-2' }}</label></td>
+                  </ng-container>
+                  <ng-template #lastRow>
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td style="background-color:rgb(230, 184, 183);">{{ item.programNTV}}</td>
+                    <td style="background-color:rgb(255, 255, 102);">{{ item.programHABERTURK}}</td>
+                    <td style="background-color:rgb(196, 215, 155);">{{ item.programCNNTURK}}</td>
+                    <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV}}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     }}</label></td>
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv}}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     }}</label></td>
+                  </ng-template>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+</div> 
+
+
+
+
+<!-- 
+<div class="container" *ngIf='showWj'>
+   
+  <wj-flex-grid [itemsSource]="data" [allowMerging]="'Cells'" [isReadOnly]="true" [alternatingRowStep]="0">
+      <wj-flex-grid-column [binding]="'timebands'" [header]="'Zaman Dilimi'" ></wj-flex-grid-column>
+
+      <wj-flex-grid-column [binding]="'programNTV'" [header]="'NTV'" ></wj-flex-grid-column>
+      
+  </wj-flex-grid>
+</div> -->
+
+<!-- <wj-flex-grid-column [binding]="'timebands'" [header]="'Zaman Dilimi'" ></wj-flex-grid-column> -->
+
+
+
+
+
+  <div class="container" *ngIf='showShare'>
+    <h2> <span style="color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHARE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{receivedlist.propertyName2[1].tableDate| date:'dd-MM-yyyy'}} {{getDayName(receivedlist.propertyName2[1].tableDate)}}</span></h2>
+        <table >
+            <thead>
+
+              
+              <!-- <tr>
+                <th style="background-color:rgb(166, 166, 166);" colspan="27">RTG {{receivedlist.propertyName1[1].tableDate| date:'dd-MM-yyyy'}}</th>
+
+              </tr> -->
+              <tr>
+                <th style="background-color:rgb(166, 166, 166);" colspan="4"> </th>
+                <th style="background-color:rgb(166, 166, 166);" colspan="11">Share Total Individuals</th>
+                <th style="background-color:rgb(166, 166, 166);" colspan="1"> </th>
+                <th style="background-color:rgb(166, 166, 166);" colspan="11">Share AB SES</th>
+
+              </tr>
+
+              <tr>
+                
+                <th style="background-color:rgb(166, 166, 166);  width: 10px;">Zaman Dilimi</th>
+                <th style="background-color:rgb(230, 184, 183);  width: 10px;">NTV</th>
+                <th style="background-color:rgb(255, 255, 102);  width: 10px;">HABERTURK</th>
+                <th style="background-color:rgb(196, 215, 155);  width: 10px;">CNNTURK</th>
+                <th *ngIf="NTV" style="background-color:rgb(230, 184, 183);">NTV</th>
+                <th *ngIf="HABERTURK" style="background-color:rgb(255, 255, 102);">HABERTURK</th>
+                <th *ngIf="CNNTURK" style="background-color:rgb(196, 215, 155);">CNNTURK</th>
+                <th *ngIf="HALKTV" style="background-color:rgb(246, 0, 0);">HALK TV</th>
+                <th *ngIf="KRT" style="background-color:rgb(255, 255, 255);">KRT</th>
+                <th *ngIf="AHABER" style="background-color:rgb(141, 180, 226);">AHABER</th>
+                <th *ngIf="TRTHABER" style="background-color:rgb(250, 191, 143);">TRT HABER</th>
+                <th *ngIf="TELE1" style="background-color:rgb(218, 147, 223);">TELE1</th>
+                <th *ngIf="TV100" style="background-color:rgb(166, 166, 166);">TV100</th>
+                <th *ngIf="HABERGLOBAL" style="background-color:rgb(0, 176, 240);">HABER GLOBAL</th>
+                <th *ngIf="SOZCUTV" style="background-color:rgb(192, 80, 77);">SOZCU TV</th>
+                <th  style="background-color:rgb(166, 166, 166);  width: 10px;">Zaman Dilimi</th>
+                <th *ngIf="NTV" style="background-color:rgb(230, 184, 183);">NTV</th>
+                <th *ngIf="HABERTURK" style="background-color:rgb(255, 255, 102);">HABERTURK</th>
+                <th *ngIf="CNNTURK" style="background-color:rgb(196, 215, 155);">CNNTURK</th>
+                <th *ngIf="HALKTV" style="background-color:rgb(246, 0, 0);">HALK TV</th>
+                <th *ngIf="KRT" style="background-color:rgb(255, 255, 255);">KRT</th>
+                <th *ngIf="AHABER" style="background-color:rgb(141, 180, 226);">AHABER</th>
+                <th *ngIf="TRTHABER" style="background-color:rgb(250, 191, 143);">TRT HABER</th>
+                <th *ngIf="TELE1" style="background-color:rgb(218, 147, 223);">TELE1</th>   
+                <th *ngIf="TV100" style="background-color:rgb(166, 166, 166);">TV100</th>
+                <th *ngIf="HABERGLOBAL" style="background-color:rgb(0, 176, 240);">HABER GLOBAL</th>
+                <th *ngIf="SOZCUTV" style="background-color:rgb(192, 80, 77);">SOZCU TV</th>
+                
+              </tr>
+                
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of receivedlist.propertyName2; let i = index">
+                <tr>
+                  <ng-container *ngIf="i !== receivedlist.propertyName2.length - 1; else lastRow">
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td style="background-color:rgb(230, 184, 183);">{{ item.programNTV}}</td>
+                    <td style="background-color:rgb(255, 255, 102);">{{ item.programHABERTURK}}</td>
+                    <td style="background-color:rgb(196, 215, 155);">{{ item.programCNNTURK}}</td>
+                    <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV| number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK | number: '1.2-2' }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         | number: '1.2-2' }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL | number: '1.2-2' }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     | number: '1.2-2' }}</label></td>
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td *ngIf="NTV" ><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv| number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  | number: '1.2-2' }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         | number: '1.2-2' }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       | number: '1.2-2' }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal | number: '1.2-2' }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     | number: '1.2-2' }}</label></td>
+                  </ng-container>
+                  <ng-template #lastRow>
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td style="background-color:rgb(230, 184, 183);">{{ item.programNTV}}</td>
+                    <td style="background-color:rgb(255, 255, 102);">{{ item.programHABERTURK}}</td>
+                    <td style="background-color:rgb(196, 215, 155);">{{ item.programCNNTURK}}</td>
+                    <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV}}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     }}</label></td>
+                    <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                    <td *ngIf="NTV" ><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv}}</label></td>
+                    <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  }}</label></td>
+                    <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   }}</label></td>
+                    <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      }}</label></td>
+                    <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         }}</label></td>
+                    <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      }}</label></td>
+                    <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    }}</label></td>
+                    <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       }}</label></td>
+                    <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       }}</label></td>
+                    <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal }}</label></td>
+                    <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     }}</label></td>
+                  </ng-template>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+<!-- </h2> -->
+</div> 
+
+
+
+
+
+
+
+
+
+  <div class="container" *ngIf='showAverage'>
+    <h2><span style="color: red;">{{ month }} {{receivedlist.propertyName3[receivedlist.propertyName3.length - 2].tableDate | date:'yyyy'}}</span></h2>
+        <table >
+            <thead>
+                <th style="background-color:rgb(166, 166, 166);">GÜN</th>
+                <th *ngIf="NTV" style="background-color:rgb(230, 184, 183);">NTV</th>
+                <th *ngIf="HABERTURK" style="background-color:rgb(255, 255, 102);">HABERTURK</th>
+                <th *ngIf="CNNTURK" style="background-color:rgb(196, 215, 155);">CNNTURK</th>
+                <th *ngIf="HALKTV" style="background-color:rgb(246, 0, 0);">HALK TV</th>
+                <th *ngIf="KRT" style="background-color:rgb(255, 255, 255);">KRT</th>
+                <th *ngIf="AHABER" style="background-color:rgb(141, 180, 226);">AHABER</th>
+                <th *ngIf="TRTHABER" style="background-color:rgb(250, 191, 143);">TRT HABER</th>
+                <th *ngIf="TELE1" style="background-color:rgb(218, 147, 223);">TELE1</th>
+                <th *ngIf="TV100" style="background-color:rgb(166, 166, 166);">TV100</th>
+                <th *ngIf="HABERGLOBAL" style="background-color:rgb(0, 176, 240);">HABER GLOBAL</th>
+                <th *ngIf="SOZCUTV" style="background-color:rgb(192, 80, 77);">SOZCU TV</th>
+                <th  style="background-color:rgb(166, 166, 166);   width: 50px;"></th>
+                <th *ngIf="NTV" style="background-color:rgb(230, 184, 183);">NTV</th>
+                <th *ngIf="HABERTURK" style="background-color:rgb(255, 255, 102);">HABERTURK</th>
+                <th *ngIf="CNNTURK" style="background-color:rgb(196, 215, 155);">CNNTURK</th>
+                <th *ngIf="HALKTV" style="background-color:rgb(246, 0, 0);">HALK TV</th>
+                <th *ngIf="KRT" style="background-color:rgb(255, 255, 255);">KRT</th>
+                <th *ngIf="AHABER" style="background-color:rgb(141, 180, 226);">AHABER</th>
+                <th *ngIf="TRTHABER" style="background-color:rgb(250, 191, 143);">TRT HABER</th>
+                <th *ngIf="TELE1" style="background-color:rgb(218, 147, 223);">TELE1</th>   
+                <th *ngIf="TV100" style="background-color:rgb(166, 166, 166);">TV100</th>
+                <th *ngIf="HABERGLOBAL" style="background-color:rgb(0, 176, 240);">HABER GLOBAL</th>
+                <th *ngIf="SOZCUTV" style="background-color:rgb(192, 80, 77);">SOZCU TV</th>
+            </thead>
+            <tbody>
+
+
+              <ng-container *ngFor="let item of receivedlist.propertyName3; let i = index">
+                <tr>
+
+                  <ng-container *ngIf="i < receivedlist.propertyName3.length - 2">
+                        <td style="background-color:rgb(166, 166, 166);">{{ item.tableDate| date:'dd-MM-yyyy'}}</td>
+                        <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV| number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK | number: '1.2-2' }}</label></td>
+                        <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         | number: '1.2-2' }}</label></td>
+                        <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL | number: '1.2-2' }}</label></td>
+                        <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     | number: '1.2-2' }}</label></td>
+                        <td style="background-color:rgb(166, 166, 166);"></td>
+                        <td *ngIf="NTV" ><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv| number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  | number: '1.2-2' }}</label></td>
+                        <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         | number: '1.2-2' }}</label></td>
+                        <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal | number: '1.2-2' }}</label></td>
+                        <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     | number: '1.2-2' }}</label></td>
+                  </ng-container>
+
+
+                      <ng-container *ngIf="i === receivedlist.propertyName3.length - 2">
+                        
+                        <td style="background-color:rgb(166, 166, 166);">{{ item.timebands}}</td>
+                        <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV| number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK | number: '1.2-2' }}</label></td>
+                        <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         | number: '1.2-2' }}</label></td>
+                        <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL | number: '1.2-2' }}</label></td>
+                        <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     | number: '1.2-2' }}</label></td>
+                        <td style="background-color:rgb(166, 166, 166);"></td>
+                        <td *ngIf="NTV" ><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv| number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  | number: '1.2-2' }}</label></td>
+                        <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         | number: '1.2-2' }}</label></td>
+                        <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       | number: '1.2-2' }}</label></td>
+                        <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal | number: '1.2-2' }}</label></td>
+                        <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     | number: '1.2-2' }}</label></td>
+                      </ng-container>
+
+
+                      <ng-container *ngIf="i === receivedlist.propertyName3.length - 1">
+                        
+                        <td style="background-color:rgb(166, 166, 166);"></td>
+                        <td *ngIf="NTV"><label [ngStyle]="{'color': item.colorTotalNTV}">{{ item.totalNTV}}</label></td>
+                        <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorTotalHABERTURK}">{{ item.totalHABERTURK }}</label></td>
+                        <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorTotalCNNTURK  }">{{ item.totalCNNTURK   }}</label></td>
+                        <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorTotalHALKTV     }">{{ item.totalHALKTV      }}</label></td>
+                        <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorTotalKRT        }">{{ item.totalKRT         }}</label></td>
+                        <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorTotalAHABER     }">{{ item.totalAHABER      }}</label></td>
+                        <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorTotalTRTHABER   }">{{ item.totalTRTHABER    }}</label></td>
+                        <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorTotalTELE1      }">{{ item.totalTELE1       }}</label></td>
+                        <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorTotalTV100      }">{{ item.totalTV100       }}</label></td>
+                        <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorTotalHABERGLOBAL}">{{ item.totalHABERGLOBAL }}</label></td>
+                        <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorTotalSOZCUTV    }">{{ item.totalSOZCUTV     }}</label></td>
+                        <td style="background-color:rgb(166, 166, 166);"></td>
+                        <td *ngIf="NTV" ><label [ngStyle]="{'color': item.colorABSESNTV}">{{ item.absesntv}}</label></td>
+                        <td *ngIf="HABERTURK"><label [ngStyle]="{'color': item.colorABSESHABERTURK}">{{ item.abseshaberturk  }}</label></td>
+                        <td *ngIf="CNNTURK"><label [ngStyle]="{'color': item.colorABSESCNNTURK  }">{{ item.absescnnturk   }}</label></td>
+                        <td *ngIf="HALKTV"><label [ngStyle]="{'color': item.colorABSESHALKTV     }">{{ item.abseshalktv      }}</label></td>
+                        <td *ngIf="KRT"><label [ngStyle]="{'color': item.colorABSESKRT        }">{{ item.abseskrt         }}</label></td>
+                        <td *ngIf="AHABER"><label [ngStyle]="{'color': item.colorABSESAHABER     }">{{ item.absesahaber      }}</label></td>
+                        <td *ngIf="TRTHABER"><label [ngStyle]="{'color': item.colorABSESTRTHABER   }">{{ item.absestrthaber    }}</label></td>
+                        <td *ngIf="TELE1"><label [ngStyle]="{'color': item.colorABSESTELE1      }">{{ item.absestelE1       }}</label></td>
+                        <td *ngIf="TV100"><label [ngStyle]="{'color': item.colorABSESTV100      }">{{ item.absestV100       }}</label></td>
+                        <td *ngIf="HABERGLOBAL"><label [ngStyle]="{'color': item.colorABSESHABERGLOBAL}">{{ item.abseshaberglobal }}</label></td>
+                        <td *ngIf="SOZCUTV"><label [ngStyle]="{'color': item.colorABSESSOZCUTV    }">{{ item.absessozcutv     }}</label></td>
+                      </ng-container>
+                    
+                      
+                 
+
+
+
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+<!-- </h2> -->
+</div> 
+
+
+
+<!-- <label for="checkall" class="fixed-checkbox-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL</label>
+ <input id="checkall" [(ngModel)]="All" [hidden]="false"  type="checkbox" class="fixed-checkbox-all" (change)="toggleAll()">
+
+
+<label  for="check1" class="fixed-checkbox-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTV</label>
+ <input id="check1" [(ngModel)]="NTV" [hidden]="false"  type="checkbox" class="fixed-checkbox-1">
+
+<label for="check2" class="fixed-checkbox-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HABERTURK</label>
+ <input id="check2" [(ngModel)]="HABERTURK" [hidden]="false"  type="checkbox" class="fixed-checkbox-2">
+
+ <label for="check3" class="fixed-checkbox-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CNNTURK</label>
+ <input id="check3" [(ngModel)]="CNNTURK" [hidden]="false"  type="checkbox" class="fixed-checkbox-3">
+ 
+<label for="check4" class="fixed-checkbox-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HALK TV</label>
+ <input id="check4" [(ngModel)]="HALKTV" [hidden]="false"  type="checkbox" class="fixed-checkbox-4">
+
+ 
+<label for="check5" class="fixed-checkbox-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KRT</label>
+<input id="check5" [(ngModel)]="KRT" [hidden]="false"  type="checkbox" class="fixed-checkbox-5">
+
+<label for="check6" class="fixed-checkbox-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AHABER</label>
+<input id="check6" [(ngModel)]="AHABER" [hidden]="false"  type="checkbox" class="fixed-checkbox-6">
+
+<label for="check7" class="fixed-checkbox-7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRT HABER</label>
+<input id="check7" [(ngModel)]="TRTHABER" [hidden]="false"  type="checkbox" class="fixed-checkbox-7">
+
+<label for="check8" class="fixed-checkbox-8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELE1</label>
+<input id="check8" [(ngModel)]="TELE1" [hidden]="false"  type="checkbox" class="fixed-checkbox-8">
+
+<label for="check9" class="fixed-checkbox-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TV100</label>
+<input id="check9" [(ngModel)]="TV100" [hidden]="false"  type="checkbox" class="fixed-checkbox-9">
+
+<label for="check10" class="fixed-checkbox-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HABER GLOBAL</label>
+<input id="check10" [(ngModel)]="HABERGLOBAL" [hidden]="false"  type="checkbox" class="fixed-checkbox-10">
+
+<label for="check11" class="fixed-checkbox-11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOZCU TV </label>
+<input id="check11" [(ngModel)]="SOZCUTV" [hidden]="false"  type="checkbox" class="fixed-checkbox-11"> -->
+
+<!-- {{dateSelected}} -->
+<div class="checkbox-container">
+<label for="checkall" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL</label>
+ <input id="checkall" [(ngModel)]="All" [hidden]="false"  type="checkbox" class="checkbox-label" (change)="toggleAll()">
+
+
+<label  for="check1" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTV</label>
+ <input id="check1" [(ngModel)]="NTV" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check2" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HABERTURK</label>
+ <input id="check2" [(ngModel)]="HABERTURK" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+ <label for="check3" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CNNTURK</label>
+ <input id="check3" [(ngModel)]="CNNTURK" [hidden]="false"  type="checkbox" class="checkbox-label">
+ 
+<label for="check4" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HALK TV</label>
+ <input id="check4" [(ngModel)]="HALKTV" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+ 
+<label for="check5" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KRT</label>
+<input id="check5" [(ngModel)]="KRT" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check6" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AHABER</label>
+<input id="check6" [(ngModel)]="AHABER" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check7" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRT HABER</label>
+<input id="check7" [(ngModel)]="TRTHABER" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check8" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELE1</label>
+<input id="check8" [(ngModel)]="TELE1" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check9" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TV100</label>
+<input id="check9" [(ngModel)]="TV100" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check10" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HABER GLOBAL</label>
+<input id="check10" [(ngModel)]="HABERGLOBAL" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+<label for="check11" class="checkbox-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOZCU TV </label>
+<input id="check11" [(ngModel)]="SOZCUTV" [hidden]="false"  type="checkbox" class="checkbox-label">
+
+</div>
+
+
+
+
+

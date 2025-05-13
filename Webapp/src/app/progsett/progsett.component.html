@@ -1,0 +1,41 @@
+<!-- app.component.html -->
+<div class="container">
+    <div class="textbox-container">
+      <div class="input-group">
+        <label>Mail Adresi:</label>
+        <input type="text" class="custom-textbox" [(ngModel)]="MailAdress">
+      </div>
+      <div class="input-group">
+        <label>Mail Şifresi:</label>
+        <input type="text" class="custom-textbox" [(ngModel)]="MailPassword">
+      </div>
+      
+      <div class="input-group">
+        <label>Kantar Media Mail:</label>
+        <input type="text" class="custom-textbox" [(ngModel)]="KantarMail">
+      </div>
+      <div class="input-group">
+        <label>Ingest Mail:</label>
+        <input type="text" class="custom-textbox" [(ngModel)]="IngestMail">
+      </div>
+      <div class="input-group">
+        <label>Gönderilen Mail:</label>
+        <input type="text" class="custom-textbox" [(ngModel)]="GonderilenMail">
+      </div>
+      <!-- <div class="input-group">
+        <label>Connection String:</label>
+        <input type="text" class="custom-textbox">
+      </div>
+      <div class="input-group">
+        <label>API URL</label>
+        <input type="text" class="custom-textbox">
+      </div>
+      <div class="input-group">
+        <label>Arayüz URL</label>
+        <input type="text" class="custom-textbox">
+      </div> -->
+      <button class="btn-save" (click)="saveProp()">Kaydet</button>
+
+    </div>
+  </div>
+  

@@ -1,0 +1,64 @@
+<!-- <div class="container">
+<div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" [(ngModel)]="username">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password">
+  </div>
+  <div>
+    <button (click)="signUp()">Sign Up</button>
+  </div>
+</div> -->
+
+<!-- <div class="container">
+    <div class="form-group">
+      <label for="username">Kullanıcı Adı:</label>
+      <input type="text" id="username" [(ngModel)]="username" placeholder="Kullanıcı adınızı giriniz">
+    </div>
+    <div class="form-group">
+      <label for="password">Şifre:</label>
+      <input type="password" id="password" [(ngModel)]="password" placeholder="Şifrenizi giriniz">
+    </div>
+    <div class="form-group">
+        <label for="newPassword">Yeni Şifre:</label>
+        <input type="password" id="newPassword" [(ngModel)]="newPassword" placeholder="Yeni şifrenizi giriniz">
+      </div>
+    <div>
+      <button class="btn" (click)="signUp()">Yeni Kullanıcı Oluştur</button>
+    </div>
+    
+    <div class="button-group">
+        <button class="btn" >Şifre Değiştir</button>
+        <button class="btn" >Kullanıcıyı Sil</button>
+      </div> -->
+  
+
+      <div class="container">
+        <div class="form-group">
+          <label for="username">Kullanıcı Adı:</label>
+          <input type="text" id="username" [(ngModel)]="username" placeholder="Kullanıcı adınızı giriniz">
+        </div>
+        <div class="form-group">
+          <label for="password">Şifre:</label>
+          <div class="password-group">
+            <input type={{visibilityType}} id="password" [(ngModel)]="password" placeholder="Şifrenizi giriniz">
+            <button class="btn-password" (click)="togglePasswordVisibility()">Show</button>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Yeni Şifre:</label>
+            <div class="password-group">
+              <input type={{visibilityType}} id="newPassword" [(ngModel)]="newPassword" placeholder="Yeni şifrenizi giriniz">
+              <button class="btn-password" (click)="togglePasswordVisibility()">Show</button>
+            </div>
+        </div>
+        <div >
+          <button class="btn" (click)="addUser()">Yeni Kullanıcı Oluştur</button>
+        </div>
+        <div class="button-group-bottom">
+          <button class="btn" (click)="changePassword()">Şifre Değiştir</button>
+          <button class="btn" (click)="deleteUser()">Kullanıcıyı Sil</button>
+        </div>
+      </div>
+      

@@ -1,0 +1,152 @@
+/* listbox.component.css */
+/* .listbox {
+    position: fixed;
+    left: 20px; 
+    top: 400px; 
+    transform: translateY(-50%);
+    width: 100px;
+    
+  }
+   */
+  /* select {
+    width: 100%;
+    height: 530px; 
+  } */
+
+
+  .listbox {
+    position: fixed;
+    left: 20px; 
+    top: 480px; 
+    transform: translateY(-50%);
+    width: 120px;
+    display: inline-block;
+  }
+  
+  .listbox select {
+    width: 100%;
+    height: 700px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 13px;
+    appearance: none; /* Remove default dropdown arrow */
+  }
+  
+  .listbox select:hover {
+    border-color: #aaa;
+  }
+  
+  .listbox select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+  
+  .listbox option {
+    padding: 10px;
+  }
+  
+  .listbox option:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+
+/* 
+  .dropdown {
+    position: fixed;
+    top: 90px;
+    left: 20px;
+  }
+    
+  .dropdown-toggle {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute; 
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    display: none;
+    background-color: #fff;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .dropdown-menu li {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu li:hover {
+    background-color: #f0f0f0;
+  }
+
+
+  .dropdown2 {
+    position: fixed;
+    top: 90px;
+    left: 100px;
+  } */
+  /* Common styles for dropdowns */
+.dropdown{
+  position: fixed;
+  top: 90px;
+  left: 20px;  display: inline-block; /* Display as inline-block */
+}
+.dropdown2 {
+  position: fixed;
+  top: 90px;
+  left: 110px;
+} 
+
+.dropdown-toggle, .dropdown2-toggle {
+  padding: 8px 16px; /* Increased padding */
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Added border radius */
+  background-color: #f8f9fa; /* Light background color */
+  color: #333; /* Dark text color */
+  font-weight: bold; /* Bold text */
+  cursor: pointer;
+}
+
+.dropdown-menu, .dropdown2-menu {
+  position: absolute; 
+  top: 100%;
+  left: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Added border radius */
+  display: none;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Added box shadow */
+}
+
+.dropdown-menu.show, .dropdown2-menu.show {
+  display: block;
+}
+
+.dropdown-menu li, .dropdown2-menu li {
+  padding: 8px 16px; /* Increased padding */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.dropdown-menu li:hover, .dropdown2-menu li:hover {
+  background-color: #f0f0f0; /* Lighter hover background */
+}
+
+  

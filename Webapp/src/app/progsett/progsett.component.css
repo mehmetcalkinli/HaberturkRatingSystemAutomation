@@ -1,0 +1,58 @@
+/* styles.css */
+.container {
+  
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .textbox-container {
+    
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-group {
+    
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+  }
+  
+  /* label {
+    margin-right: 10px;
+  } */
+  
+  .custom-textbox {
+    position: absolute;
+    left : 180px;
+    width: 250px;
+    /* Add your custom styles here */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+  
+
+
+
+
+
+
+  .btn-save {
+  /* Add your button styles here */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background-color: #0056b3;
+}
