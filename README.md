@@ -1,7 +1,3 @@
-Here's a professional and clear GitHub `README.md` for your Habertürk automation project:
-
----
-
 # 📺 Habertürk TV Ratings Automation Project
 
 This project is an end-to-end automation system developed for **Habertürk** to streamline the processing and presentation of daily television channel rating data. The system automatically retrieves rating reports sent via email, processes the data, and makes it accessible via a modern web interface.
@@ -104,16 +100,6 @@ This project consists of the following four components:
 
 ---
 
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
-
----
-
 ## 📄 License
 
 This project is intended for internal use and may not be publicly licensed. Please contact the project maintainers for more information.
-
----
-
-Let me know if you'd like to include screenshots, deployment instructions, or CI/CD details!
